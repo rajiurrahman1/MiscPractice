@@ -57,12 +57,10 @@ public class BFS {
         while(!queue.isEmpty()){
             int currentNode = queue.poll(); //take the first element out of Queue
             for(int i=0; i<adjacencyMatrix.length; i++){//add all the neighbours of currentNode to the Queue
-                if(adjacencyMatrix[currentNode][i] == 1){
-                    visited[currentNode] = true;
-                    if(!visited[i]){
+                if(adjacencyMatrix[currentNode][i] == 1 && visited[i] == false){                                        
+                        visited[i] = true;
                         queue.add(i);
                         distance[i] = distance[currentNode]+6;
-                    }
                 }
             }
         }
@@ -77,7 +75,6 @@ public class BFS {
         }
     }
     public static void printArray(int[] arr){
-        System.out.println("");
         for(int i=0; i<arr.length; i++){
             if(arr[i] !=0)System.out.print(arr[i] + " ");
         }System.out.println("");
