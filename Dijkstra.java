@@ -4,24 +4,18 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Rajiur
  */
 public class Dijkstra {
     public static void main(String[] args){
-                Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         int testCases = in.nextInt();
         for(int x=0; x<testCases; x++){
             int numNodes = in.nextInt();
             int numEdges = in.nextInt();
             int[][] adjacencyMatrix = new int[numNodes][numNodes];
-
             for(int i=0; i<numEdges; i++){
                 int source = in.nextInt();
                 int destination = in.nextInt();
@@ -41,7 +35,6 @@ public class Dijkstra {
         Arrays.fill(distances, -1);
         PriorityQueue<Integer> pQueue = new PriorityQueue<Integer>();
         
-//        visited[startNode-1] = true;
         distances[startNode-1] = 0;
         pQueue.add(0); //inserting distance from source to source in the Priority Queue
         while( !pQueue.isEmpty() ){
@@ -65,7 +58,6 @@ public class Dijkstra {
                             pQueue.add(distances[i]);
                         }
                     }
-
                 }
             }
         }
