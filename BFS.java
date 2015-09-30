@@ -6,7 +6,9 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- *
+ * Breadth first traversal of a graph
+ * Prints the distance of all the nodes from a given startNode
+ * 
  * @author Rajiur
  */
 public class BFS {
@@ -25,10 +27,12 @@ public class BFS {
                 edges[i][0] = src;
                 edges[i][1] = dst;
                 adjacencyMatrix[src-1][dst-1] = 1;
+                adjacencyMatrix[dst-1][src-1] = 1;
             }
             int startNode = in.nextInt();
-            int[] minDistances = bfs(adjacencyMatrix, startNode);
+            //input completed
 //            dumpMatrix(adjacencyMatrix);
+            int[] minDistances = bfs(adjacencyMatrix, startNode);
             printArray(minDistances);
             
         }
@@ -55,14 +59,15 @@ public class BFS {
             for(int i=0; i<adjacencyMatrix.length; i++){//add all the neighbours of currentNode to the Queue
                 if(adjacencyMatrix[currentNode][i] == 1){
                     visited[currentNode] = true;
-                    queue.add(i);
-                    distance[i] = distance[currentNode]+6;
+                    if(!visited[i]){
+                        queue.add(i);
+                        distance[i] = distance[currentNode]+6;
+                    }
                 }
             }
         }
         return distance;
     }
-    
     public static void dumpMatrix(int[][] matrix){
         System.out.println("");
         for(int i=0; i<matrix.length; i++){
@@ -71,12 +76,10 @@ public class BFS {
             }System.out.println("");
         }
     }
-
     public static void printArray(int[] arr){
         System.out.println("");
         for(int i=0; i<arr.length; i++){
             if(arr[i] !=0)System.out.print(arr[i] + " ");
         }System.out.println("");
     }
-
 }
