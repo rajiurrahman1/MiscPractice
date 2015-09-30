@@ -27,7 +27,6 @@ public class BFS {
                 adjacencyMatrix[src-1][dst-1] = 1;
             }
             int startNode = in.nextInt();
-            //input completed
             int[] minDistances = bfs(adjacencyMatrix, startNode);
 //            dumpMatrix(adjacencyMatrix);
             printArray(minDistances);
@@ -60,8 +59,6 @@ public class BFS {
                     distance[i] = distance[currentNode]+6;
                 }
             }
-            
-            
         }
         return distance;
     }
