@@ -83,8 +83,8 @@ public class MinimumSpanningTreeKruskal {
     
     //the following method has two parts
     //part 1 - to find out if src and dst are in a same set or not
-            //if yes, its not safe to add this edge into MST, therefore return false
-    //part 2- if not same set, then adjust the set so that src and dst both are in same set, the return true
+            //if yes then there is a cycle, its not safe to add this edge into MST, therefore return false
+    //part 2- if not same set, then adjust the set so that src and dst both combines into one set, then return true
     private static boolean isSafe(HashMap<Integer, List<Integer>> set, int src, int dst) {
         //find wehre 'src' is taking rest
         int srcIndex = -1;
@@ -137,6 +137,10 @@ public class MinimumSpanningTreeKruskal {
         return x;
     }
     
+    //Our honorable PriorityQueue can hold only the weights and each time by pop() it returns the min weight
+    // Although it can be made to hold a Tuple<Weight, Tuple<Source, Destination>>, it appeared to me complex to manage 
+                //(It's already complex enough :P and I love my life)
+    //So, the following method returns an Edge if given it's weight
     private static Edge getEdge(HashMap<Integer, List<Edge>> graph, int minWeight) {
         List<Edge> edgeList = graph.get(minWeight);
         if(edgeList.size() == 1){ 
@@ -157,6 +161,11 @@ public class MinimumSpanningTreeKruskal {
         }
     }
     
+    //build a set for keeping track of the nodes 
+    //It is a standard HashMap which will initially contain NumNodes number of sets (denoted by 1, 2, ... N)
+    //Each set will contain one List, the job of which will contain all the elements in a single set
+            //Initially each set has one list. Each list will contain one element, the key or itself
+    //As the algorithm progresses, the sets will be merged together 
     private static HashMap<Integer, List<Integer>> buildSet(int numNodes) {
         HashMap<Integer, List<Integer>> set = new HashMap<Integer, List<Integer>>();
         for(int i=1; i<=numNodes; i++){
@@ -167,6 +176,9 @@ public class MinimumSpanningTreeKruskal {
         return set;
     }
     
+    //helper function for building the Graph from console input
+        //take soruce, destination, and weight and add it into 'graph', the holy mother of everything
+    //the key to the HashMap(graph) is weight
     private static void addEdge(HashMap<Integer, List<Edge>> graph, int source, int destination, int weight) {
         if(graph.get(weight) == null ){ //there is no edge in the graph with the particular weight // create key
             Edge e = new Edge(source, destination);
@@ -181,8 +193,11 @@ public class MinimumSpanningTreeKruskal {
             graph.remove(weight);
             graph.put(weight, l);
         }
+        //One of the reaosns I like Java is 'pass by reference'
+        //Look, I don't need to return graph here, Yay!
     }
 
+    //self explanatory
     private static void printGraph(HashMap<Integer, List<Edge>> graph) {
         System.out.println("");
         for(Integer key:graph.keySet()){
@@ -193,7 +208,8 @@ public class MinimumSpanningTreeKruskal {
             }System.out.println("");
         }
     }
-
+    
+    //I know I write a lot of dumping codes. I am pretty weak at debugging. Guess what helps me out!
     private static void printSet(HashMap<Integer, List<Integer>> set) {
         for(Integer key:set.keySet()){
             List<Integer> list1 = set.get(key);
