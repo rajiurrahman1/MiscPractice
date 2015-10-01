@@ -20,6 +20,7 @@ class Edge{
 }
 
 public class MinimumSpanningTreeKruskal {
+    
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         int numNodes = in.nextInt();
@@ -46,6 +47,7 @@ public class MinimumSpanningTreeKruskal {
         System.out.println(mstSum);
 
     }
+    
     private static int mstKruskal(int numNodes, HashMap<Integer, List<Edge>> graph, PriorityQueue<Integer> pq, List<Edge> mstEdges ) {
         //first we build a set to maintain if it is safe to add an edge to MST
         //and write a method using this set // if adding an edge forms cycle, the method returns false
@@ -116,6 +118,7 @@ public class MinimumSpanningTreeKruskal {
             return true;
         }
     }
+    
     private static int finDstIndexInTheList(List<Integer> dstList, int dst) {
         int x = 0;
         for(int i=0; i<dstList.size(); i++){
@@ -194,10 +197,4 @@ public class MinimumSpanningTreeKruskal {
         }
     }
 
-
-    
-    
-    
-    
-    
 }
