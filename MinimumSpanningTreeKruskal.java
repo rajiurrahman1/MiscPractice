@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.Scanner;
  * reach me at rajiurrahman.bd@gmail.com
  */
 
-class Edge{ //class name and constructor function is self-explanator i assume
+class Edge{ //class name and constructor function is self-explanatory I assume
     public int src;
     public int dst;
     public Edge(int s, int d){
