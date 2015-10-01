@@ -6,11 +6,25 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
+ * Description:
+ * Implementation of Kruskal's algorithm for Minimum Spanning Tree (MST)
+ * Check wiki for general description of the algorithm ---(http://bit.ly/KruskalsAlgorithm)---
+ * 
+ * To be honest it was a pain in the ass, although it deems itself an easy one in algorithm books & lectures 
+ * How to detect whether an edge is safe to add to MST or if the addition will create a cycle - the most difficult part
+ * The rest of the thing is fairly simple
+ * 
+ * Input: 
+ * Num_Nodes Num_Edges
+ * Followed by all the edges in the following format
+ * srcNode dstNode edgeWeight
+ * 
  *
- * @author Rajiur
+ * @author Rajiur Rahman
+ * reach me at rajiurrahman.bd@gmail.com
  */
 
-class Edge{
+class Edge{ //class name and constructor function is self-explanator i assume
     public int src;
     public int dst;
     public Edge(int s, int d){
@@ -30,7 +44,8 @@ public class MinimumSpanningTreeKruskal {
         //and the value of HashMap will be a list of type <Edge>. The list will contain all the edges with similar weights
         //putting weight as Key for the convenience of implementing Kruskal algorithm. In each iteration, we need the smallest weight
         HashMap<Integer, List<Edge>> graph = new HashMap<Integer, List<Edge>>();
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        //at each pop, PriorityQueue gives the lowest value, that's EXACTLY what we need for this algorithm
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(); 
         
         for(int i=0; i<numEdges; i++){
             int source = in.nextInt();
@@ -39,7 +54,6 @@ public class MinimumSpanningTreeKruskal {
             addEdge(graph, source, destination, weight);
             pq.add(weight);
         }
-        int startNode = in.nextInt();
 //        printGraph(graph);
         List<Edge> mstEdges = new ArrayList<Edge>();
         int mstSum = mstKruskal(numNodes, graph, pq, mstEdges);
@@ -54,14 +68,8 @@ public class MinimumSpanningTreeKruskal {
         HashMap<Integer, List<Integer>> set = buildSet(numNodes); // build the set to check cycle before adding edge to MST
         int mstWeight = 0;
 //        printSet(set);
-        
-//        int minWeight = pq.poll();
-//        Edge e = getEdge(graph, minWeight);
-//        System.out.println(e.src + "-" + e.dst);
-//        boolean res = isSafe(set, e.src, e.dst);
-//        System.out.println(res);
-//        printSet(set);
 
+        //now we traverse the whole graph
         while( !pq.isEmpty() ){
             int minWeight = pq.poll();
             Edge e = getEdge(graph, minWeight);
@@ -198,3 +206,4 @@ public class MinimumSpanningTreeKruskal {
     }
 
 }
+
