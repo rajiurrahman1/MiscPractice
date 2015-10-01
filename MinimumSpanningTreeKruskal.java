@@ -14,7 +14,7 @@ import java.util.Scanner;
  * How to detect whether an edge is safe to add to MST or if the addition will create a cycle - the most difficult part
  * The rest of the thing is fairly simple
  * 
- * Input: 
+ * Input: (Check the end of file for sample input)
  * Num_Nodes Num_Edges
  * Followed by all the edges in the following format
  * srcNode dstNode edgeWeight
@@ -207,3 +207,32 @@ public class MinimumSpanningTreeKruskal {
 
 }
 
+/**
+ * Input 1:
+7 12
+1 2 4
+1 3 3
+1 5 7
+2 3 6
+2 4 5
+3 4 11
+3 5 8
+4 5 2
+4 6 10
+4 7 2
+5 6 5
+6 7 3
+Output: 19
+* 
+* 
+* 
+* Input 2:
+4 6
+1 2 5
+1 3 3
+4 1 6
+2 4 7
+3 2 4
+3 4 5
+Output: 12 
+ */
