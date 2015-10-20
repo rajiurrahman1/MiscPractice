@@ -1,6 +1,3 @@
-
-package Epic;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +8,8 @@ import java.util.Scanner;
  *
  * @author Rajiur
  * 
- * 
+ * Write a program that converts number to characters (simulating mobile keypad)
+ * The character '#' represents a blank space
  */
 
 
